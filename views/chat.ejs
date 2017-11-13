@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>DILAN</title>
+<link rel="shortcut icon" href="/img/
+fabicon.ico">
+<link rel="stylesheet" type="text/css" href="/css/animate (8).css">
+	<meta charset="UTF-8">
+	<link rel="stylesheet"  href="/css/inicio.css">
+</head>
+<body>
+<header>
+<div >
+<div class="logo">
+	<img class="animated bounceInLeft" src="/img/logo.png" >	
+	</div>
+	<nav class="navegacion">
+	<ul class="menu">
+		<li class="first-item"> <a href="inicio.html">
+		<img src="/img/home.jpg" alt="" class="imagen">
+        <span class="text-item">INICIO</span>
+        <span class="down-item"></span>
+		</a></li>
+		
+		<li class="first-item"><a href="informacion.html">
+		<img src="/img/us.jpg" alt="" class="imagen">
+        <span class="text-item">INFORMACION</span>
+        <span class="down-item"></span>
+		</a>
+		</li>
+
+		<li class="first-item"><a href="contactos.html">
+		<img src="/img/contacto.jpg" alt="" class="imagen">
+        <span class="text-item">CONTACTO</span>
+        <span class="down-item"></span>
+		</a>
+		</li>
+
+		<li class="first-item"><a href="servicios.html">
+		<img src="/img/servicios.jpg" alt="" class="imagen">
+        <span class="text-item">SERVICIOS</span>
+        <span class="down-item"></span>
+		</a>
+		</li>
+	</ul>
+	</nav>
+  </header>
+  <div>
+	<h1>ESTE ES EL CHAT</h1>
+	<textarea rows="20" cols="30" id="msj" ></textarea>
+	<br>
+	<label for="newMsj">Msj::</label>
+	<input type="text" name="newMsj" id="newMsj"></input>
+	<input type="submit" value="Enviar" onclick="enviarMsj()" >
+     </div>
+     <footer id="pie">
+     Derechos Reservados &copy; 2010-2011
+	 </footer>
+	 <script src="/socket.io/socket.io.js"></script>
+	 <script>
+		 var msjString="";
+		 var socket = io.connect('http://localhost:4000');
+		 socket.on('newMsj',function(msj){
+			 
+			msjString=msjString+msj+"\n";
+			document.getElementById("msj").innerHTML = msjString;
+		 })
+
+		 function enviarMsj(){
+			var newMsjInput=document.getElementById("newMsj").value;			 
+			document.getElementById("newMsj").innerHTML ="ks";
+			console.log(newMsjInput);
+			socket.emit('newMsj',newMsjInput);
+		 }
+		 
+		 
+	 </script>
+
+
+
+
+
+</body>
+</head>
+</html>
